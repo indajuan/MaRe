@@ -1,0 +1,1 @@
+Index.PACKAGES = {"se" : [], "se.uu" : [], "se.uu.it" : [], "se.uu.it.easymr" : [{"class" : "se\/uu\/it\/easymr\/EasyMapReduce.html", "name" : "se.uu.it.easymr.EasyMapReduce"}]};
