@@ -446,6 +446,23 @@ inputMountPoint and write back to outputMountPoint
     </span>
       <p class="shortcomment cmt">mount point where the processed data is read back to Spark
 </p>
+    </li><li name="se.uu.it.easymr.EasyMapReduce#recordDelimiter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="recordDelimiter:String"></a>
+      <a id="recordDelimiter:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">recordDelimiter</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#se.uu.it.easymr.EasyMapReduce@recordDelimiter:String" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" />
+      </a>
+    </span>
+      
     </li><li name="se.uu.it.easymr.EasyMapReduce#reduce" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="reduce(imageName:String,command:String):String"></a>
       <a id="reduce(String,String):String"></a>
@@ -463,9 +480,8 @@ inputMountPoint and write back to outputMountPoint
       </a>
     </span>
       <p class="shortcomment cmt">It reduces a RDD to a single String using a Docker container command.</p><div class="fullcomment"><div class="comment cmt"><p>It reduces a RDD to a single String using a Docker container command. The command is applied first
-to each RDD partition, and then to couples of RDD records (that are concatenated with a new line
-separator). Data is mounted to the specified inputMountPoint and read back from the specified
-outputMountPoint.
+to each RDD partition, and then to couples of RDD records. Data is mounted to the specified
+inputMountPoint and read back from the specified outputMountPoint.
 </p></div><dl class="paramcmts block"><dt class="param">imageName</dt><dd class="cmt"><p>a Docker image name available in each node</p></dd><dt class="param">command</dt><dd class="cmt"><p>a command to run in the Docker container, this should read from
 inputMountPoint and write back to outputMountPoint, and it should perform an
 associative and commutative operation (for the parallelization to work)</p></dd></dl></div>
