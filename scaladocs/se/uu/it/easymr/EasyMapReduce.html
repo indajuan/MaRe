@@ -96,7 +96,7 @@ SparkConf class when initializing the SparkContext.
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="se.uu.it.easymr.EasyMapReduce#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(rdd:org.apache.spark.rdd.RDD[String],inputMountPoint:String,outputMountPoint:String):se.uu.it.easymr.EasyMapReduce"></a>
+      <a id="&lt;init&gt;(rdd:org.apache.spark.rdd.RDD[String],inputMountPoint:String,outputMountPoint:String,reduceInputMountPoint1:String,reduceInputMountPoint2:String):se.uu.it.easymr.EasyMapReduce"></a>
       <a id="&lt;init&gt;:EasyMapReduce"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -104,10 +104,10 @@ SparkConf class when initializing the SparkContext.
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">EasyMapReduce</span><span class="params">(<span name="rdd">rdd: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="inputMountPoint">inputMountPoint: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;/input&quot;</span></span>, <span name="outputMountPoint">outputMountPoint: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;/output&quot;</span></span>)</span>
+        <span class="name">EasyMapReduce</span><span class="params">(<span name="rdd">rdd: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="inputMountPoint">inputMountPoint: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;/input&quot;</span></span>, <span name="outputMountPoint">outputMountPoint: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;/output&quot;</span></span>, <span name="reduceInputMountPoint1">reduceInputMountPoint1: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;/input1&quot;</span></span>, <span name="reduceInputMountPoint2">reduceInputMountPoint2: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;/input2&quot;</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#se.uu.it.easymr.EasyMapReduce@&lt;init&gt;(rdd:org.apache.spark.rdd.RDD[String],inputMountPoint:String,outputMountPoint:String):se.uu.it.easymr.EasyMapReduce" title="Permalink" target="_top">
+      <a href="../../../../index.html#se.uu.it.easymr.EasyMapReduce@&lt;init&gt;(rdd:org.apache.spark.rdd.RDD[String],inputMountPoint:String,outputMountPoint:String,reduceInputMountPoint1:String,reduceInputMountPoint2:String):se.uu.it.easymr.EasyMapReduce" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" />
       </a>
     </span>
@@ -371,6 +371,28 @@ SparkConf class when initializing the SparkContext.
         <img src="../../../../lib/permalink.png" />
       </a>
     </span>
+      <p class="shortcomment cmt">It maps each RDD record through a Docker container command.</p><div class="fullcomment"><div class="comment cmt"><p>It maps each RDD record through a Docker container command.
+Data is mounted to the specified inputMountPoint and read back
+from the specified outputMountPoint.
+</p></div><dl class="paramcmts block"><dt class="param">imageName</dt><dd class="cmt"><p>a Docker image name available in each node</p></dd><dt class="param">command</dt><dd class="cmt"><p>a command to run in the Docker container, this should read from
+inputMountPoint and write back to outputMountPoint
+</p></dd></dl></div>
+    </li><li name="se.uu.it.easymr.EasyMapReduce#mapPartitions" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="mapPartitions(imageName:String,command:String):se.uu.it.easymr.EasyMapReduce"></a>
+      <a id="mapPartitions(String,String):EasyMapReduce"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">mapPartitions</span><span class="params">(<span name="imageName">imageName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="command">command: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="se.uu.it.easymr.EasyMapReduce">EasyMapReduce</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#se.uu.it.easymr.EasyMapReduce@mapPartitions(imageName:String,command:String):se.uu.it.easymr.EasyMapReduce" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" />
+      </a>
+    </span>
       <p class="shortcomment cmt">It maps each RDD partition through a Docker container command.</p><div class="fullcomment"><div class="comment cmt"><p>It maps each RDD partition through a Docker container command.
 Data is mounted to the specified inputMountPoint and read back
 from the specified outputMountPoint.
@@ -479,6 +501,64 @@ inputMountPoint and write back to outputMountPoint
         <img src="../../../../lib/permalink.png" />
       </a>
     </span>
+      <p class="shortcomment cmt">It reduces a RDD to a single String using a Docker container command.</p><div class="fullcomment"><div class="comment cmt"><p>It reduces a RDD to a single String using a Docker container command.
+The command is applied to couples of RDD records. Data is mounted to the specified
+reduceInputMountPoint1 and reduceInputMountPoint2, and it is read back from
+the specified outputMountPoint.
+</p></div><dl class="paramcmts block"><dt class="param">imageName</dt><dd class="cmt"><p>a Docker image name available in each node</p></dd><dt class="param">command</dt><dd class="cmt"><p>a command to run in the Docker container, this should read from
+reduceInputMountPoint1 and reduceInputMountPoint2, and it should write back to
+outputMountPoint. The command should perform an associative and commutative operation
+(for the parallelization to work).</p></dd></dl></div>
+    </li><li name="se.uu.it.easymr.EasyMapReduce#reduceInputMountPoint1" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="reduceInputMountPoint1:String"></a>
+      <a id="reduceInputMountPoint1:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">reduceInputMountPoint1</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#se.uu.it.easymr.EasyMapReduce@reduceInputMountPoint1:String" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="se.uu.it.easymr.EasyMapReduce#reduceInputMountPoint2" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="reduceInputMountPoint2:String"></a>
+      <a id="reduceInputMountPoint2:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">reduceInputMountPoint2</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#se.uu.it.easymr.EasyMapReduce@reduceInputMountPoint2:String" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="se.uu.it.easymr.EasyMapReduce#reducePartitions" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="reducePartitions(imageName:String,command:String):String"></a>
+      <a id="reducePartitions(String,String):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">reducePartitions</span><span class="params">(<span name="imageName">imageName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="command">command: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#se.uu.it.easymr.EasyMapReduce@reducePartitions(imageName:String,command:String):String" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" />
+      </a>
+    </span>
       <p class="shortcomment cmt">It reduces a RDD to a single String using a Docker container command.</p><div class="fullcomment"><div class="comment cmt"><p>It reduces a RDD to a single String using a Docker container command. The command is applied first
 to each RDD partition, and then to couples of RDD records. Data is mounted to the specified
 inputMountPoint and read back from the specified outputMountPoint.
@@ -522,6 +602,46 @@ associative and commutative operation (for the parallelization to work)</p></dd>
     </span>
       <p class="shortcomment cmt">It sets the mount point where the processed data is read back to Spark.</p><div class="fullcomment"><div class="comment cmt"><p>It sets the mount point where the processed data is read back to Spark.
 </p></div><dl class="paramcmts block"><dt class="param">outputMountPoint</dt><dd class="cmt"><p>mount point where the processed data is read back to Spark
+</p></dd></dl></div>
+    </li><li name="se.uu.it.easymr.EasyMapReduce#setReduceInputMountPoint1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setReduceInputMountPoint1(reduceInputMountPoint1:String):se.uu.it.easymr.EasyMapReduce"></a>
+      <a id="setReduceInputMountPoint1(String):EasyMapReduce"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setReduceInputMountPoint1</span><span class="params">(<span name="reduceInputMountPoint1">reduceInputMountPoint1: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="se.uu.it.easymr.EasyMapReduce">EasyMapReduce</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#se.uu.it.easymr.EasyMapReduce@setReduceInputMountPoint1(reduceInputMountPoint1:String):se.uu.it.easymr.EasyMapReduce" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">It sets the mount point for the first input file that is passed to the containers in the reduce method.</p><div class="fullcomment"><div class="comment cmt"><p>It sets the mount point for the first input file that is passed to the containers in the reduce method.
+</p></div><dl class="paramcmts block"><dt class="param">reduceInputMountPoint1</dt><dd class="cmt"><p>mount point for the first input file that is passed to the containers
+in the reduce method
+</p></dd></dl></div>
+    </li><li name="se.uu.it.easymr.EasyMapReduce#setReduceInputMountPoint2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="setReduceInputMountPoint2(reduceInputMountPoint2:String):se.uu.it.easymr.EasyMapReduce"></a>
+      <a id="setReduceInputMountPoint2(String):EasyMapReduce"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setReduceInputMountPoint2</span><span class="params">(<span name="reduceInputMountPoint2">reduceInputMountPoint2: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="se.uu.it.easymr.EasyMapReduce">EasyMapReduce</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#se.uu.it.easymr.EasyMapReduce@setReduceInputMountPoint2(reduceInputMountPoint2:String):se.uu.it.easymr.EasyMapReduce" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">It sets the mount point for the second input file that is passed to the containers in the reduce method.</p><div class="fullcomment"><div class="comment cmt"><p>It sets the mount point for the second input file that is passed to the containers in the reduce method.
+</p></div><dl class="paramcmts block"><dt class="param">reduceInputMountPoint2</dt><dd class="cmt"><p>mount point for the second input file that is passed to the containers
+in the reduce method
 </p></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
