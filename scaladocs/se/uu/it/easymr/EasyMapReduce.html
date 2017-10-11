@@ -111,7 +111,7 @@ SparkConf class when initializing the SparkContext.
         <img src="../../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">rdd</dt><dd class="cmt"><p>input RDD</p></dd><dt class="param">inputMountPoint</dt><dd class="cmt"><p>mount point for the input chunk that is passed to the containers</p></dd><dt class="param">outputMountPoint</dt><dd class="cmt"><p>mount point where the processed data is read back to Spark
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">rdd</dt><dd class="cmt"><p>input RDD</p></dd><dt class="param">inputMountPoint</dt><dd class="cmt"><p>mount point for the input chunk that is passed to the containers</p></dd><dt class="param">outputMountPoint</dt><dd class="cmt"><p>mount point where the processed data is read back to Spark</p></dd><dt class="param">reduceInputMountPoint1</dt><dd class="cmt"><p>reduce mount point for the first input file that is passed to the containers</p></dd><dt class="param">reduceInputMountPoint2</dt><dd class="cmt"><p>recude mount point for the second input file that is passed to the containers
 </p></dd></dl></div>
     </li></ol>
             </div>
@@ -466,8 +466,7 @@ inputMountPoint and write back to outputMountPoint
         <img src="../../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt">mount point where the processed data is read back to Spark
-</p>
+      <p class="shortcomment cmt">mount point where the processed data is read back to Spark</p>
     </li><li name="se.uu.it.easymr.EasyMapReduce#recordDelimiter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="recordDelimiter:String"></a>
       <a id="recordDelimiter:String"></a>
@@ -525,7 +524,7 @@ outputMountPoint. The command should perform an associative and commutative oper
         <img src="../../../../lib/permalink.png" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">reduce mount point for the first input file that is passed to the containers</p>
     </li><li name="se.uu.it.easymr.EasyMapReduce#reduceInputMountPoint2" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="reduceInputMountPoint2:String"></a>
       <a id="reduceInputMountPoint2:String"></a>
@@ -542,7 +541,8 @@ outputMountPoint. The command should perform an associative and commutative oper
         <img src="../../../../lib/permalink.png" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">recude mount point for the second input file that is passed to the containers
+</p>
     </li><li name="se.uu.it.easymr.EasyMapReduce#reducePartitions" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="reducePartitions(imageName:String,command:String):String"></a>
       <a id="reducePartitions(String,String):String"></a>
